@@ -1,74 +1,75 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "sort.h"
+
 /**
- * partition - A function that partion an array
- * @array: the array to be partioned
- * @lb: lower bound
- * @ub: upper bound
- * @size: the size of array
+ * partition - partition
+ * @array: array
+ * @lo: lower
+ * @hi: higher
+ * @size: array's size
  * Return: i
-*/
-size_t partition(int array[], size_t lb, size_t ub, size_t size)
+ */
+int partition(int *array, int lo, int hi, size_t size)
 {
-	int pivot = array[lb];
-	size_t start = lb;
-	size_t end = ub;
-	int temp;
+	int i = lo - 1, j = lo;
+	int pivot = array[hi], aux = 0;
 
-	while (start < end)
+	for (; j < hi; j++)
 	{
-		while (array[start] <= pivot)
-			start++;
-
-		while (array[end] > pivot)
-			end--;
-
-		if (start < end)
+		if (array[j] < pivot)
 		{
-			temp = array[start];
-			array[start] = array[end];
-			array[end] = temp;
-			print_array(array, size);
+			i++;
+			if (array[i] != array[j])
+			{
+				aux = array[i];
+				array[i] = array[j];
+				array[j] = aux;
+				print_array(array, size);
+			}
 		}
-
 	}
-	array[lb] = array[end];
-	array[end] = pivot;
-	print_array(array, size);
-
-	return (end);
-
-}
-/**
- * start_quick_sort - A function function that sorts an array of integers in
- * ascending order using the Quick sort algorithm
- * @array: the array to be partioned
- * @lb: lower bound
- * @ub: upper bound
- * @size: the size of array
- * Return: Nothing
-*/
-void start_quick_sort(int array[], size_t lb, size_t ub, size_t size)
-{
-	if (lb < ub)
+	if (array[i + 1] != array[hi])
 	{
-		size_t location = partition(array, lb, ub, size);
+		aux = array[i + 1];
+		array[i + 1] = array[hi];
+		array[hi] = aux;
+		print_array(array, size);
+	}
+	return (i + 1);
+}
 
-		start_quick_sort(array, lb, location - 1, size);
-		start_quick_sort(array, location + 1, ub, size);
+/**
+ * quick_s - quick sort
+ * @array: given array
+ * @lo: lower
+ * @hi:higher
+ * @size: array's size
+ * Return: void
+ */
+void quick_s(int *array, int lo, int hi, size_t size)
+{
+	int pivot;
+
+	if (lo < hi)
+	{
+		pivot = partition(array, lo, hi, size);
+		quick_s(array, lo, pivot - 1, size);
+		quick_s(array, pivot + 1, hi, size);
 	}
 }
 
 /**
- * quick_sort - A function that sort an array
- * @array: the array to be partioned
- * @lb: lower bound
- * @ub: upper bound
- * @size: the size of array
- * Return: Nothing
-*/
-void quick_sort(int array[], size_t size)
+ * quick_sort - function that sorts an array of integers
+ *              in ascending order using the Quick sort algorithm
+ * @array: array
+ * @size: array's size
+ * Return: void
+ */
+void quick_sort(int *array, size_t size)
 {
-	start_quick_sort(array, 0, size - 1, size);
+	if (array == NULL || size < 2)
+		return;
+
+	quick_s(array, 0, size - 1, size);
 }
