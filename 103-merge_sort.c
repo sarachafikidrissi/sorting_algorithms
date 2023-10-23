@@ -11,9 +11,9 @@
  * @mid: the middle of array
  * Return: Nothing
 */
-void merge(int *array, int lb, int mid, int ub, int *output_array)
+void merge(int *array, size_t lb, size_t mid, size_t ub, int *output_array)
 {
-	int i = lb, j = mid + 1, k = lb;
+	size_t i = lb, j = mid + 1, k = lb;
 
 	while (i <= mid && j <= ub)
 	{
@@ -61,9 +61,9 @@ void merge(int *array, int lb, int mid, int ub, int *output_array)
  * @ub: higher index
  * Return: Nothing
 */
-void merge_sort_(int *array, int lb, int ub, int *output_array)
+void merge_sort_(int *array, size_t lb, size_t ub, int *output_array)
 {
-	int mid;
+	size_t mid;
 
 	if (lb < ub)
 	{
@@ -89,7 +89,7 @@ void merge_sort_(int *array, int lb, int ub, int *output_array)
 */
 void merge_sort(int *array, size_t size)
 {
-	int lb, ub;
+	size_t lb, ub;
 	int *output_array;
 
 	if (array == NULL || size < 2)
