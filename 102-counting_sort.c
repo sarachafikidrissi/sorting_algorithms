@@ -50,4 +50,5 @@ void counting_sort(int *array, size_t size)
 	{
 		array[i] = output_array[i];
 	}
+	free(count_array);
 }
