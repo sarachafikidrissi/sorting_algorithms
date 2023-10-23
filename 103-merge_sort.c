@@ -92,6 +92,9 @@ void merge_sort(int *array, size_t size)
 	int lb, ub;
 	int *output_array;
 
+	if (array == NULL || size < 2)
+		return;
+
 	output_array = malloc(sizeof(int) * size);
 	lb = 0;
 	ub = size - 1;
