@@ -30,6 +30,8 @@ void quick_sort(int *array, size_t size);
 void shell_sort(int *array, size_t size);
 void counting_sort(int *array, size_t size);
 void merge_sort(int *array, size_t size);
+void merge_sort_(int *array, int lb, int ub, int *output_array);
+void merge(int *array, int lb, int mid, int ub, int *output_array);
 
 void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
