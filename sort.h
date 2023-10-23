@@ -30,8 +30,8 @@ void quick_sort(int *array, size_t size);
 void shell_sort(int *array, size_t size);
 void counting_sort(int *array, size_t size);
 void merge_sort(int *array, size_t size);
-void merge_sort_(int *array, int lb, int ub, int *output_array);
-void merge(int *array, int lb, int mid, int ub, int *output_array);
+void merge(size_t lo, size_t mi, size_t hi, int *dest, int *src);
+void merge_partition(size_t lo, size_t hi, int *array, int *base);
 
 void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
